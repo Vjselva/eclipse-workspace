@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class nestedswitch {
+    public static void main(String args[])
+    {
+        Scanner obj=new Scanner(System.in);
+        int case1=obj.nextInt();
+        char case2;
+        switch(case2)
+        {
+            case 1:
+                System.out.println("you are in case 1");
+                case2=obj.next().charAt(0);
+                switch (case2)
+                {
+                    case 'A':
+                        System.out.println("you are in case A");
+                        break;
+                    case 'B':
+                        System.out.println("you are in case B");
+                        break;
+
+                }
+                break;
+            case 2:
+                System.out.println("you are in case 1");
+                break;
+            case 3:
+                System.out.println("you are in case 1");
+                break;
+
+
+        }
+    }
+}
