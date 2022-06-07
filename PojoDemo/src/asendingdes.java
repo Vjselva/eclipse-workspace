@@ -38,20 +38,7 @@ public class asendingdes {
             t=t-1;
         }
         int k=t+1;
-          /*  for(int i=0;i<n;i++)
-            {
-                if(i%2==0) {
-                    for(int j=i;j<=t;j++) {
-                        copyarr[i] = arr[t-(j/2)];
-                        break;
-                    }
-                 }
-                else {
-                    for(int j=t;j<n;j++) {
-                        copyarr[i]=arr[j];
-                        break;
-                    }
-                }*/
+          
         for(int i=0;i<n;i++)
         {
             if(i%2==0)
@@ -66,21 +53,7 @@ public class asendingdes {
             }
 
             }
-                /* for(int i=0;i<=t;i++)
-                {
-                    copyarr[j]=arr[t-i];
-            }
-        }
-       for(int i=t+1;i<n;i++)
-        {
-            for(int j=0;j<n;j++)
-            {
-                if(j%2!=0)
-                {
-                    copyarr[j]=arr[i];
-                }
-            }
-        }*/
+                
         System.out.println("Asending desending order from last: ");
         for(int i=0;i<n;i++)
         {

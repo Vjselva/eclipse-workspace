@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class  vowel {
@@ -9,6 +10,20 @@ public class  vowel {
 		switch(n)
 		{
 		case 'A':
+			ArrayList<Integer> arr=new ArrayList<Integer>();
+			arr.add(1);
+			arr.add(2);
+			arr.add(3);
+			arr.add(4);
+			arr.add(5);
+			if(arr.remove(3)!=null)
+			{
+				System.out.println("removed");
+			}
+			else
+			{
+				System.out.println("Not removed");	
+			}
 			System.out.println("A is a vowel");
 			break;
 		case 'E':

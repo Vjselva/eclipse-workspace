@@ -6,8 +6,8 @@ public class arrayaslist {
 	{
 		int arr[]= {1,2,3,45,67};
 		List<String> l=Arrays.asList("11","12","13","14","15");
-		List<Integer> l1=Arrays.asList(arr[]);
-		System.out.println(l1);
+		//List<Integer> l1=Arrays.asList(arr[]);
+		System.out.println(l);
 		System.out.println(l);
 		
 	}

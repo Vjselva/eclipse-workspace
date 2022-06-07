@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class numberpattern {
 	public static void main(String args[])
-	{   int num=1;
+	{   int number=1;
 		Scanner sc=new Scanner(System.in);
 		int t=sc.nextInt();
 		for(int i=0;i<t;i++)
@@ -13,8 +13,8 @@ public class numberpattern {
 			}
 			for(int k=0;k<=i;k++)
 			{
-				System.out.print(num+" ");
-				num++;
+				System.out.print(number+" ");
+				number++;
 			}
 			System.out.println();
 		}
