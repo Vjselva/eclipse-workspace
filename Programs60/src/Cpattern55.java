@@ -19,7 +19,7 @@ class Cpattern implements Common{
 		// TODO Auto-generated method stub
 		Scanner obj = new Scanner(System.in);
 		System.out.print("Enter the count to print C pattern: ");
-		int n = obj.nextInt();
+		int n = obj.nextInt(); 
 		pattern(n);
 		
 	}

@@ -9,7 +9,8 @@ public class MainPage
 		Scanner sc = new Scanner(System.in);
 		boolean end = true;
 		while (end) {
-			welcomePage();
+			System.out.println("\n  --- WelCome To Food Order ---");
+			System.out.print("\n1.Admin Login       2.User Login  ");
 			int choice = sc.nextInt();
 			switch (choice) 
 			{
@@ -17,7 +18,8 @@ public class MainPage
 				new Admin().login();
 				break;
 			case 2:
-				UserPage.selection();
+				new UserPage().selection();
+				break;
 			case 3:
 				System.out.println("Thank You");
 				end = false;
@@ -26,11 +28,4 @@ public class MainPage
 		}
 	}
 
-	public static void welcomePage() 
-	{
-		
-		System.out.println("\n----WelCome To Food Order----");
-		System.out.println("\n1.Admin Login       2.User Login  ");
-		
-	}
 }

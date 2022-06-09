@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
-class NumericPattern {
+class NumericPattern implements Common {
 	Scanner sc = new Scanner(System.in);
 
-	void getInput() {
+	public void getInput() {
 		System.out.println("  Number Pattern");
 		System.out.println("1.Style ONE");
 		System.out.println("2.Style TWO");
@@ -13,7 +13,7 @@ class NumericPattern {
 		int count = sc.nextInt();
 		switch (ch) {
 		case 1:
-			trianglePattern(count);
+			pattern(count);
 			break;
 		case 2:
 			trianglePattern1(count);
@@ -23,7 +23,7 @@ class NumericPattern {
 		}
 	}
 
-	void trianglePattern(int count) {
+	public void pattern(int count) {
 		for (int i = 1; i <= count; i++) {
 			int t = i;
 			for (int j = 1; j <= count - i; j++) {

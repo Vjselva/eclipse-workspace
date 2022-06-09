@@ -12,12 +12,13 @@ class Print {
 
 	void getInput() {
 		System.out.print("Enter the Character : ");
-		char c = sc.next().charAt(0);
-		Display(c);
+		int variable = sc.next().charAt(0);
+		Display(variable);
 	}
 
-	void Display(char x) {
-		for (char i = x; i <= 90; i++) {
+	void Display(int x) {
+		char character=(char)x;
+		for (char i = character; i <= 90; i++) {
 			System.out.print(i);
 		}
 	}

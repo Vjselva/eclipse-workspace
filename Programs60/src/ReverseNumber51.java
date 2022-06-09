@@ -18,6 +18,7 @@ class StackExample extends StackEx {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the Number: ");
 		int number = sc.nextInt();
+		System.out.println(number);
 		stackPush(star, number);
 		System.out.println("Stack " + star);
 		stackPop(star);
@@ -41,16 +42,15 @@ class StackExample extends StackEx {
 		System.out.println("Reverse Number " + sum);
 
 	}
+}
 
-	public class ReverseNumber51 {
+public class ReverseNumber51 {
 		public static void main(String[] args) {
-			StackExample stackEx=new StackExample();
-			stackEx.getInput();
-			stackEx.printMethod();
-			
-
-		}
+			StackExample top=new StackExample();
+			top.getInput();
+			top.printMethod();
+			}
 	}
 
 
-}
+

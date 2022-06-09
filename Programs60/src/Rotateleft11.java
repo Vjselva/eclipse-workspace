@@ -12,13 +12,15 @@ Rotated Array
 import java.util.Scanner;
 
 class Rotate {
+
 	Scanner sc = new Scanner(System.in);
 
-	int[][] get() {
+	int[][] getInput() {
 		int size;
 		System.out.println("Enter the Array Size ");
 		size = sc.nextInt();
 		int array[][] = new int[size][size];
+		System.out.println("Enter the array elements ");
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				array[i][j] = sc.nextInt();
@@ -27,6 +29,9 @@ class Rotate {
 		return array;
 
 	}
+}
+
+class RotateDisplay extends Rotate {
 
 	void display(int array[][]) {
 		for (int i = 0; i < array.length; i++) {
@@ -37,6 +42,10 @@ class Rotate {
 		}
 	}
 
+}
+
+class RotateArray extends RotateDisplay {
+	
 	void rotateMethod(int array[][]) {
 		int result[][] = new int[array.length][array.length];
 		for (int i = array.length - 1, k = 0; i >= 0; i--, k++) {
@@ -52,11 +61,12 @@ class Rotate {
 
 public class Rotateleft11 {
 	public static void main(String[] args) {
-		Rotate r = new Rotate();
-		int array[][] = r.get();
+		RotateDisplay rotateDisplay = new RotateDisplay();
+		int array[][] = rotateDisplay.getInput();
 		System.out.println("Original Array ");
-		r.display(array);
-		r.rotateMethod(array);
+		rotateDisplay.display(array);
+		RotateArray rotateArray = new RotateArray();
+		rotateArray.rotateMethod(array);
 
 	}
 

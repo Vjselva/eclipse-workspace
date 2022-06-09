@@ -41,8 +41,7 @@ public class FoodPage implements FoodVariety {
 		{
 			int key=entry.getKey();
 			FoodDetails foodDetails=entry.getValue();
-			System.out.println();
-			System.out.printf("|%5s %14s %10s %20s",key, foodDetails.getName(),foodDetails.getPrice(),foodDetails.getType());
+			System.out.printf("\n%5s %14s %10s %20s",key, foodDetails.getName(),foodDetails.getPrice(),foodDetails.getType());
 		}
 		System.out.println("\n--------------------------------------------------------------");
 		
@@ -72,16 +71,24 @@ class Admin extends FoodPage
 		System.out.println("User Name  : Admin");
 		System.out.print("Password   : ");
 		String password=sc.next();
-		String result=(password.equals("admin"))?".Welcome Admin. ":"Your Password is Wrong";
-		System.out.println("\n ******* "+result+" *******");
-		adminChoice();
-		
+		if((password.equals("admin")))
+		{
+			System.out.println("\n  ****  .Welcome Admin.  **** ");
+			adminChoice();
+		}
+		else
+		{
+			System.out.println("\n  ****  .Your Password is Wrong. ****");
+		}		
 		
 	}
 
 	public void adminChoice() {
 		
-		welcomeAdmin();
+		System.out.println("\n1. Add Food and Its Details ");
+		System.out.println("2. View Existing Food list ");
+		System.out.println("3. Exit");
+		System.out.println();
 		int choice=sc.nextInt();
 		FoodPage foodpage=new FoodPage();
 		switch(choice)
@@ -98,14 +105,6 @@ class Admin extends FoodPage
 			MainPage.main(null);
 			break;
 		}
-		
-	}
-
-	public void welcomeAdmin() {
-		System.out.println("\n1. Add Food and Its Details ");
-		System.out.println("2. View Existing Food list ");
-		System.out.println("3. Exit");
-		System.out.println();
 		
 	}
 }

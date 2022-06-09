@@ -9,12 +9,22 @@
 
 import java.util.Scanner;
 
-public class Pyramid56 {
-	public static void main(String args[]) {
-		int number = 1;
+class Pyramid implements Common {
+
+	@Override
+	public void getInput() {
+
 		System.out.print("Enter the Number ");
 		Scanner sc = new Scanner(System.in);
 		int t = sc.nextInt();
+		pattern(t);
+
+	}
+
+	@Override
+	public void pattern(int t) {
+		
+		int number = 1;
 		for (int i = 0; i < t; i++) {
 			for (int j = 0; j < t - i; j++) {
 				System.out.print(" ");
@@ -25,8 +35,12 @@ public class Pyramid56 {
 			}
 			System.out.println();
 		}
+	}
+}
 
-		sc.close();
+public class Pyramid56 {
+	public static void main(String args[]) {
+		new Pyramid().getInput();
 	}
 
 }

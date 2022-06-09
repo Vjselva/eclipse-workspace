@@ -1,18 +1,18 @@
 import java.util.Scanner;
 
-class Pattern {
+class Pattern implements Common {
 	Scanner sc = new Scanner(System.in);
 
-	void getInput() {
-		System.out.println("Ente the count ");
-		int count = sc.nextInt();
+	public void getInput() {
 		System.out.println("1.Number Pattern");
 		System.out.println("2.Star Pattern");
 		int choice = sc.nextInt();
-		starPattern(count, choice);
+		pattern(choice);
 	}
 
-	void starPattern(int count, int choice) {
+	public void pattern(int choice) {
+		System.out.println("Ente the count ");
+		int count = sc.nextInt();
 		int number = count;
 		for (int i = 0; i < count; i++) {
 			for (int j = 0; j <= i; j++) {

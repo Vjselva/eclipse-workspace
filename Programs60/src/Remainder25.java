@@ -21,7 +21,7 @@ class RemainderAndQuotient {
 
 public class Remainder25 extends RemainderAndQuotient {
 
-	public int calculate(int number, int number1) 
+	public int calculate(int number, int number1)  // method override (same name with same parameter)
 	{
 		int remainder = super.calculate(number, number1); //call overridden method
 		System.out.println("Remainder value " + remainder);

@@ -6,16 +6,17 @@ Input the number of Stream 5
  */
 import java.util.Scanner;
 
-class SumofSeries {
+class SumofSeries {                              //class A (Hierarchical Inheritance)
 	Scanner sc = new Scanner(System.in);
 
-	void getInput() {
+	int getInput() {
 		System.out.print("Input the number of Stream ");
 		int number = sc.nextInt();
-		series(number);
-		display(number);
+		return number;
 	}
-
+}
+class SeriesCalculation extends SumofSeries      // class B extends A
+{
 	void series(int number) {
 		for (int i = 1; i <= number; i++) {
 			for (int j = 1; j <= i; j++) {
@@ -26,7 +27,9 @@ class SumofSeries {
 			}
 		}
 	}
-
+}
+class Display extends SumofSeries               // class c extends A
+{
 	void display(int number) {
 		System.out.println();
 		for (int i = 1; i <= number; i++) {
@@ -38,7 +41,11 @@ class SumofSeries {
 
 public class SumofSeries60 {
 	public static void main(String[] args) {
-		new SumofSeries().getInput();
+		SeriesCalculation calculation=new SeriesCalculation();
+		int number=calculation.getInput();
+		calculation.series(number);
+		Display show=new Display();
+		show.display(number);
 	}
 
 }
