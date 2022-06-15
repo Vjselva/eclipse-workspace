@@ -2,7 +2,8 @@ package Inheritance;
 
 import java.util.Scanner;
 
-class RemainderAndQuotient {
+class RemainderAndQuotient {                                   // superclass
+	
 	public void display() 
 	{
 		System.out.println("This is a parent class ");
@@ -15,11 +16,11 @@ class RemainderAndQuotient {
 
 }
 
-public class Remainder extends RemainderAndQuotient {
+public class Remainder extends RemainderAndQuotient {             //subclass
 
-	public int calculate(int number, int number1)  // method override (same name with same parameter)
+	public int calculate(int number, int number1)                // method override (same name with same parameter)
 	{
-		//int remainder = super.calculate(number, number1); //call overridden method
+		//int remainder = super.calculate(number, number1);      //call overridden method
 		//System.out.println("Remainder value " + remainder);
 		return (number / number1);
 	}

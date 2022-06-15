@@ -34,37 +34,54 @@ public class UserPage {
 		if(top!=null && password.equals(top.getPassword()))
 		{		String name=top.getUserName();
 				foodList(userID,name);
+				//userOption(userID,name);
+				
 		}
 		
 	}
 
+//	public void userOption(int userID,String name) 
+//	{
+//		System.out.println("\n    Choose Your Foods");
+//		{
+//		while(t==1)
+//		System.out.print("Food ID ");
+//		int foodId=sc.nextInt();
+//		System.out.print("Quantity ");
+//		int qty=sc.nextInt();		
+//		
+//		
+//	}
+
 	public void foodList(int userID,String name) 
 	{
-		System.out.println("\n Welcome " +name );
-		System.out.println("\n NORTHINDIAN FOODS");
+		System.out.println("\n Welcome " +name.toUpperCase() );
+		
+		System.out.println("\n FOODS MENU");
 		System.out.println("\n-----------------------------------------------------------");
-		System.out.printf("|%10s %10s %10s ", "FOOD CODE  |", "FOOD NAME  |", "FOOD PRICE  |"); 
-		System.out.println("\n-----------------------------------------------------------");
-		for(Entry<Integer,FoodDetails> entry : FoodPage.foodMap.entrySet())
-		{
-			FoodDetails foodDetails=entry.getValue();
-			if(foodDetails.getType().equals(FoodType.NORTHINDIAN.name()))
-			{
-				System.out.printf("\n%5s %14s %10s",entry.getKey(), foodDetails.getName(),foodDetails.getPrice());
-			}
-		}
-		System.out.println("\n SOUTHINDIAN FOODS");
-		System.out.println("\n-----------------------------------------------------------");
-		System.out.printf("|%10s %10s %10s ", "FOOD CODE  |", "FOOD NAME  |", "FOOD PRICE  |"); 
+		System.out.printf("|%10s %10s %10s %10s", "FOOD CODE  |", "FOOD NAME  |", "FOOD PRICE|" , "FOOD TYPE|"); 
 		System.out.println("\n-----------------------------------------------------------");
 		for(Entry<Integer,FoodDetails> entry : FoodPage.foodMap.entrySet())
 		{
 			FoodDetails foodDetails=entry.getValue();
-			if(foodDetails.getType().equals(FoodType.SOUTHINDIAN.name()))
+			if(foodDetails.getType().toString().equals(FoodType.NORTHINDIAN.toString()))
 			{
-				System.out.printf("\n%5s %14s %10s",entry.getKey(), foodDetails.getName(),foodDetails.getPrice());
+				System.out.printf("\n%10s %14s %10s %10s",entry.getKey(), foodDetails.getName(),foodDetails.getPrice(),foodDetails.getType());
 			}
+			
 		}
+//		System.out.println("\n SOUTHINDIAN FOODS");
+//		System.out.println("\n-----------------------------------------------------------");
+//		System.out.printf("|%10s %10s %10s ", "FOOD CODE  |", "FOOD NAME  |", "FOOD PRICE  |"); 
+//		System.out.println("\n-----------------------------------------------------------");
+//		for(Entry<Integer,FoodDetails> entry : FoodPage.foodMap.entrySet())
+//		{
+//			FoodDetails foodDetails=entry.getValue();
+//			if(foodDetails.getType().equals(FoodType.SOUTHINDIAN.name()))
+//			{
+//				System.out.printf("\n%5s %14s %10s",entry.getKey(), foodDetails.getName(),foodDetails.getPrice());
+//			}
+//		}
 		
 	}
 

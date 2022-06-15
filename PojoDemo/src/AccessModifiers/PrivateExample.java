@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public class PrivateExample {
-
+   static int a=10;
 	private void display()
 	{
 		System.out.println("We have some private value");
@@ -17,6 +17,7 @@ public class PrivateExample {
 	}
 	public static void main(String[] args) {
 		PrivateExample p = new PrivateExample();
+		System.out.println(a);
 		p.display();
 	}
 }

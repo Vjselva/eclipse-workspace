@@ -10,8 +10,7 @@ public class stringcheck {
 		String s1=sc.nextLine();
 		System.out.println("Enter the second string2: ");
 		String s2=sc.nextLine();
-		String strArray[]=s1.split("");
-		ArrayList<String> ls=new ArrayList<String>(Arrays.asList(strArray));
+		ArrayList<String> ls=new ArrayList<String>(Arrays.asList(s1.split("")));
 		//System.out.println(ls);
 		for(int i=0;i<s2.length();i++)
 		{	//String t=Character.toString(s2.charAt(i));
