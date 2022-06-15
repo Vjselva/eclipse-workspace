@@ -2,12 +2,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class StudentDetails {
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-
+class DatabaseConnection {
+	public void getInput() throws ClassNotFoundException, SQLException {
 		Scanner sc = new Scanner(System.in);
 		ArrayList<Student> std = new ArrayList<>();
-		String str ="";
+		String str = "";
 		int stuId = 001;
 		int ch1;
 		do {
@@ -35,28 +34,10 @@ public class StudentDetails {
 
 		} while (ch1 == 1);
 		addInformation(std);
-
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_details", "root", "");
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("Select * from information");
-			System.out.println("\t------------------------------------------------------------------------------");
-			System.out.println("\t| ID | Name  | DOB	 | Gender |    Mobile  | age	| mark	| Grade	|");
-			System.out.println("\t------------------------------------------------------------------------------");
-			while (rs.next()) {
-				System.out.println("\t| " + rs.getInt(1) + "\t" + rs.getString(2) + "\t" + rs.getString(3) + "\t"
-						+ rs.getString(4) + "\t" + rs.getString(5) + "\t" + rs.getInt(6) + "\t" + rs.getInt(7) + "\t"
-						+ rs.getString(8) + "|");
-			}
-			System.out.println("\t------------------------------------------------------------------------------");
-		} catch (Exception e) {
-			System.out.println(e);
-
-		}
 	}
 
-	public static void addInformation(ArrayList<Student> std) throws SQLException, ClassNotFoundException {
+	public void addInformation(ArrayList<Student> std) throws SQLException, ClassNotFoundException 
+	{
 		String userId = "Selva001";
 		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_details", "root", "");
 				Statement stmt = con.createStatement();) {
@@ -72,6 +53,38 @@ public class StudentDetails {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		viewInformation();
+	}
+
+	void viewInformation() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_details", "root", "");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("Select * from information");
+			System.out.println("\t------------------------------------------------------------------------------");
+			System.out.println("\t| ID | Name  | DOB	 | Gender |    Mobile  | age	| mark	| Grade	|");
+			System.out.println("\t------------------------------------------------------------------------------");
+			while (rs.next()) {
+				System.out.println("\t| " + rs.getInt(1) + "\t" + rs.getString(2) + "\t" + rs.getString(3) + "\t"
+						+ rs.getString(4) + "\t" + rs.getString(5) + "\t" + rs.getInt(6) + "\t" + rs.getInt(7) + "\t"
+						+ rs.getString(8) + "|");
+			}
+			System.out.println("\t------------------------------------------------------------------------------");
+			} catch (Exception e) {
+			System.out.println(e);
+
+			}
+	}
+}
+
+
+public class StudentDetails {
+	
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+
+		new DatabaseConnection().getInput();
+		
 	}
 
 }
