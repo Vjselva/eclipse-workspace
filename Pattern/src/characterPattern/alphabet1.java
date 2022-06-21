@@ -3,6 +3,12 @@ package characterPattern;
 import java.util.Scanner;
 
 public class alphabet1 {
+	
+	public void start()
+	{
+		int i;
+		//System.out.println(i);
+	}
 	public static void main(String args[])
 	{
 		System.out.println("Enter the alphabet which you you want to print");
@@ -17,7 +23,8 @@ public class alphabet1 {
 			System.out.println();
 		}
 		
-		
+		alphabet1 ab=new alphabet1();
+		ab.start();
 	}
 
 }

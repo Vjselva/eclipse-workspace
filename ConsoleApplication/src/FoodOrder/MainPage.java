@@ -2,18 +2,16 @@ package FoodOrder;
 
 import java.util.Scanner;
 
-public class MainPage 
-{
-	public static void main(String[] args) 
-	{
+class MainContent {
+
+	public static void initialPage() {
 		Scanner sc = new Scanner(System.in);
 		boolean end = true;
 		while (end) {
 			System.out.println("\n  --- WelCome To Food Order ---");
 			System.out.print("\n1.Admin Login       2.User Login  ");
 			int choice = sc.nextInt();
-			switch (choice) 
-			{
+			switch (choice) {
 			case 1:
 				new Admin().login();
 				break;
@@ -25,6 +23,14 @@ public class MainPage
 				end = false;
 				break;
 			}
+
+		}
+	}
+
+	public class MainPage {
+		public static void main(String[] args) {
+
+			MainContent.initialPage();
 		}
 	}
 

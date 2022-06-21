@@ -26,6 +26,50 @@ public class InvertedV {
 		System.out.println();
 		
 	}
+	
+	System.out.println("\nPattern 2\n");
+	
+	for(int i=1;i<=count;i++)
+	{
+		for(int j=1;j<=i;j++)
+		{
+			if(j==1||j==i||i==count)
+			{
+				System.out.print(j);
+			}
+			else
+			{
+				System.out.print(" ");
+			}
+		}
+		System.out.println();
 	}
+	
+System.out.println("\nPattern 3\n");
+	
+	for(int i=1;i<=count;i++)
+	{
+		for(int k=i;k<=count;k++)
+		{
+			System.out.print(" ");
+		}
+		for(int j=1;j<=i;j++)
+		{
+			if(j==1||j==i||i==count)
+			{
+				System.out.print(" "+j);
+			}
+			else
+			{
+				System.out.print("  ");
+			}
+		}
+		System.out.println();
+	}
+	
+	}
+	
+
+
 
 }
