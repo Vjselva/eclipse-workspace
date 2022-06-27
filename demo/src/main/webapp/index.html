@@ -1,0 +1,207 @@
+<html>
+<head>
+<title>Symposium Registration Form</title>
+<style>
+body {
+    font-size: 16px;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background:#56565b;
+}
+h2 {
+    text-align: center;
+    color:black;
+}
+form {
+    width: 300px;
+    background: #3c3c42;
+    padding: 15px 40px 40px;
+    border: 3px solid #ccc;
+    margin: 50px auto 0;
+    border-radius: 7px;
+}
+label {
+    
+    margin-bottom: 5px;
+    color:black;
+}
+
+
+input, select {
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 2px;
+    color:black;
+}
+.row {
+    padding-bottom: 10px;
+}
+.form-inline {
+    border: 1px solid #ccc;
+    padding: 8px 10px 4px;
+    border-radius: 2px;
+}
+.form-inline label, .form-inline input {
+    display: inline-block;
+    width: auto;
+    padding-right: 15px;
+}
+.error {
+    color: red;
+    font-size: 90%;
+}
+input[type="submit"] {
+    font-size: 110%;
+    font-weight: 100;
+    background: black;
+    border-color: gray;
+    box-shadow: 0 3px 0 black;
+    color: #fff;
+    margin-top: 10px;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background: gray;
+}
+
+</style>
+
+<script>
+function validateForm(){
+var fname=document.sympoForm.fname.value;
+var reg=document.sympoForm.reg.value;
+var cname=document.sympoForm.cname.value;
+var dept=document.sympoForm.dept.value;
+var email=document.sympoForm.email.value;
+var mobile=document.sympoForm.mobile.value;
+var gender = document.sympoForm.gender.value;
+var event=document.sympoForm.event.value;
+
+if(fname=="")
+{
+alert("Please enter your first name");
+return false;
+}else{
+var regex=/^[a-zA-Z\s]+$/;
+if(regex.test(fname)==false){
+alert("Please enter a valid name");
+return false;
+}
+}
+if(reg=="")
+{
+alert("Please enter your register number");
+return false;
+}
+
+if(cname=="")
+{
+alert("Please enter your college name");
+return false;
+}
+
+if(dept == "Select") {
+        alert("Please select your department");
+        return false;
+    } 
+if(email == "") {
+        alert("Please enter your email address");
+        return false;
+    } else {
+        var regex = /^\S+@\S+\.\S+$/;
+        if(regex.test(email) === false) {
+            alert("Please enter a valid email address");
+            return false;
+        }
+    }
+    if(mobile == "") {
+        alert("Please enter your mobile number");
+        return false;
+    } else {
+        var regex = /^[1-9]\d{9}$/;
+        if(regex.test(mobile) === false) {
+            alert("Please enter a valid 10 digit mobile number");
+            return false;
+        } 
+    }
+if(gender == "") {
+        alert("Please select your gender");
+return false;
+    } 
+if(event == "Select") {
+        alert("Please select one event");
+        return false;
+} 
+}
+</script>
+</head>
+<body>
+<form name="sympoForm" method="post" action="FormValidation">
+    <h2>Symposium Registration Form</h2>
+    <div class="row">
+        <label>First Name</label>
+        <input type="text" name="fname">
+        <div class="error" id="fnameErr"></div>
+    </div>
+    <div class="row">
+        <label>Register Number</label>
+        <input type="text" name="reg">
+        <div class="error" id="regErr"></div>
+    </div>
+    <div class="row">
+        <label>College Name</label>
+        <input type="text" name="cname">
+        <div class="error" id="cnameErr"></div>
+    </div>
+    <div class="row">
+        <label>Department</label>
+        <select name="dept">
+            <option>Select</option>
+            <option>CSE</option>
+            <option>ECE</option>
+            <option>IT</option>
+            <option>EEE</option>
+            <option>MECH</option>
+	    <option>CIVIL</option>
+        </select>
+        <div class="error" id="deptErr"></div>
+    </div>
+    <div class="row">
+        <label>Email</label>
+        <input type="text" name="email">
+        <div class="error" id="emailErr"></div>
+    </div>
+        <div class="row">
+        <label>Mobile Number</label>
+        <input type="text" name="mobile" maxlength="10">
+        <div class="error" id="mobileErr"></div>
+    </div>
+        <div class="row">
+        <label>Gender</label>
+        <div class="form-inline">
+            <label><input type="radio" name="gender" value="male"> Male</label>
+            <label><input type="radio" name="gender" value="female"> Female</label>
+        </div>
+        <div class="error" id="genderErr"></div>
+    </div>
+     
+<div class="row">
+        <label>Events</label>
+        <select name="event">
+            <option>Select</option>
+            <option>Depate</option>
+            <option>Photoshoot</option>
+            <option>Pencil sketch</option>
+            <option>Paper Presentation</option>
+            <option>Cook without fore</option>
+        </select>
+        <div class="error" id="eventErr"></div>
+    </div>
+    <div class="row">
+        <input type="submit"  value="Register">
+    </div>
+</form>
+</body>
+</html>
