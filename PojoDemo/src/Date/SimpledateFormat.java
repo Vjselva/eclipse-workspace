@@ -33,7 +33,7 @@ class Dateformat
 		    System.out.println("Date Format with E, dd MMM yyyy HH:mm:ss z : "+strDate);  
 	}
 	
-	void timeStamp()
+	void greenwich()
 	{
 		Date now = new Date();
         System.out.println("Current Date in milliseconds is :" + now.getTime());
@@ -61,8 +61,9 @@ public class SimpledateFormat
 {
 	public static void main(String[] args) {
 		//System.out.println("hai");
-		new Dateformat().format();
-		new Dateformat().timeStamp();
+		Dateformat df=new Dateformat();
+		df.format();
+		df.greenwich();
 		
 	}
 }

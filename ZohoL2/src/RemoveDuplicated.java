@@ -42,9 +42,9 @@ public class RemoveDuplicated {
 		System.out.println(array[l]);
 		}
 	}
+
 		
-		static boolean contains(char t,char s[],j
-				)
+		static boolean contains(char t,char s[],int j)
 		{
 			for (int k = 0; k < s.length; k++) 
 			{

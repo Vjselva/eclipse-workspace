@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,45 +41,40 @@ public class FormValidation extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		String fname=request.getParameter("fname");
-		String reg=request.getParameter("reg");
-		String cname=request.getParameter("cname");
-		String dept=request.getParameter("dept");
+		String name=request.getParameter("name");
 		String email=request.getParameter("email");
-		String mobile=request.getParameter("mobile");
+		String password=request.getParameter("password");
+		long phonenumber=Long.parseLong(request.getParameter("phonenumber"));;
 		String gender=request.getParameter("gender");
-		String event=request.getParameter("event");
-        System.out.println(fname);
+		String language=request.getParameter("language");
+		int zipcode=Integer.valueOf(request.getParameter("zipcode"));
+		String about=request.getParameter("about");
+        System.out.println(name);
 		PrintWriter pw=response.getWriter();
-		/*try
+		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/lab","root","root");
-		PreparedStatement ps=con.prepareStatement("insert into events values(?,?,?,?,?,?,?,?)");
-		ps.setString(1, fname);
-		ps.setString(3, reg);
-		ps.setString(4, cname);
-		ps.setString(5, dept);
-		ps.setString(6, email); 
-		ps.setString(7, mobile);
-		ps.setString(8, gender);
-		ps.setString(9, event);
-		int k=ps.executeUpdate();
-		if(k>0)
-		{
-		pw.println("Data inserted successfully");
-		}
-		else
-		{
-		pw.println("Data inserted unsuccessfully");
-		}
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/registration", "root", "root");
+			Statement stmt = con.createStatement();
+			String sql = "insert into info(name,email,password,phonenumber,gender,languagee,zipcode,about,created_by) values('"
+					+ name+ "','" + email + "','" + password + "','" + phonenumber + "','"
+					+ gender + "','" + language + "','" + zipcode + "','" + about + "','"+name+"')";
+			
+			int result = stmt.executeUpdate(sql);
+			if (result > 0) {
+				System.out.println("\n--Sucessfully Registered--");
+			} else {
+				System.out.println("\n--Registration not complete try again later--");
+			}
+
+		
+	
 		}
 		catch(Exception e)
 		{
-		pw.println(e);
-		}*/
+			System.out.println(e);
+		}
 	}
-
 
 	/**
 	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)

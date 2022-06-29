@@ -14,25 +14,25 @@ public class PriorityQueueFile {
 
 	public static void main(String[] args) throws IOException {
 		
-		//PriorityQueue example with Comparator
-		Queue<Customer> customerPriorityQueue = new PriorityQueue<>(7, idComparator);
-		addDataToQueue(customerPriorityQueue);
 		
-		pollDataFromQueue(customerPriorityQueue);
+		Queue<Filecontent> filePriorityQueue = new PriorityQueue<>(7, idComparator);
+		addDataToQueue(filePriorityQueue);
+		
+		pollDataFromQueue(filePriorityQueue);
 		
 	}
 	
-	//Comparator anonymous class implementation
-	public static Comparator<Customer> idComparator = new Comparator<Customer>(){
+
+	public static Comparator<Filecontent> idComparator = new Comparator<Filecontent>(){
 		
 		@Override
-		public int compare(Customer c1, Customer c2) {
-            return (int) (c1.getId()- c2.getId());
+		public int compare(Filecontent c1, Filecontent c2) {
+            return (int) (c1.getCount()- c2.getCount());
         }
 	};
 
-	//utility method to add random data to Queue
-	private static void addDataToQueue(Queue<Customer> customerPriorityQueue) throws IOException {
+	
+	private static void addDataToQueue(Queue<Filecontent> filePriorityQueue) throws IOException {
 		
 		File folder = new File("F://Files/");
 		File filesList[] = folder.listFiles();
@@ -47,20 +47,19 @@ public class PriorityQueueFile {
 		      count++;
 		      temp+=(char)i;
 		    }
-		    System.out.println(temp);
-		    System.out.println(count);
-		    customerPriorityQueue.add(new Customer(count,temp));
+//		    System.out.println(temp);
+//		    System.out.println(count);
+		    filePriorityQueue.add(new Filecontent(count,temp));
 		      
 		        
 		}
 }
 	
-	//utility method to poll data from queue
-	private static void pollDataFromQueue(Queue<Customer> customerPriorityQueue) {
+	private static void pollDataFromQueue(Queue<Filecontent> filePriorityQueue) {
 		while(true){
-			Customer cust = customerPriorityQueue.poll();
-			if(cust == null) break;
-			System.out.println("Processing Customer with ID="+cust.getId()+" file content " +cust.getName());
+			Filecontent f = filePriorityQueue.poll();
+			if(f == null) break;
+			System.out.println("FILE DATA COUNT "+f.getCount()+" File Content " +f.getFilecontent());
 		}
 	}
 
