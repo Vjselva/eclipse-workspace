@@ -11,18 +11,29 @@ public class RemoveDuplicated {
 			array[s]=s1.charAt(s);
 		}
 		
-
 		for (int i = 0; i < array.length;i++)
 		{
 			
 			for (int j = i + 1; j < array.length; j++) 
 			{
-				if (array[i] == array[j]) 
+				if (Character.toString(array[i]).equalsIgnoreCase(Character.toString(array[j]))) 
 				{
-					for(int k=1;k<array.length;k++)
+					for(int k=1;k<=array.length;k++)
 					{
-					char t = (char) (array[j] + k);
-					
+						int temp=0;
+						char t = 0 ;
+							if(array[j]<=122 && array[j]>=97)
+							{	 temp =array[j] + k;
+								 t = temp>122?(char)(((temp-97)%26)+96):(char)temp;
+							}
+							else if(array[j]<=90 && array[j]>=65)
+							{	 temp =array[j] + k;
+								 t = temp>90?(char)(((temp-65)%26)+65):(char)temp;
+							}
+							else if(array[j]>=48 && array[j]<=57)
+							{	temp =array[j] + k;
+								 t=temp>57?(char)(((temp-48)%10)+48):(char)temp;
+							}
 					
 						if(!contains(t,array,j))
 						{
@@ -33,10 +44,12 @@ public class RemoveDuplicated {
 						{
 							continue;
 						}
-					}
-					}
+					
 				}
 			}
+		}
+		}
+		
 		for(int l=0;l<array.length;l++)
 		{
 		System.out.println(array[l]);
@@ -46,9 +59,9 @@ public class RemoveDuplicated {
 		
 		static boolean contains(char t,char s[],int j)
 		{
-			for (int k = 0; k < s.length; k++) 
+			for (int k = 0; k < j; k++) 
 			{
-				if (t == s[k]) 
+				if (Character.toString(t).equalsIgnoreCase(Character.toString(s[k]))) 
 				{
 					return true;
 				}

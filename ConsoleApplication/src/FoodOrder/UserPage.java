@@ -104,7 +104,7 @@ public class UserPage {
 										FoodDetails foodDetails = entry.getValue();
 										System.out.printf("\n%10s %14s %10s %10s %10s", foodKey, foodDetails.getName(),
 												foodDetails.getPrice(), qty, foodDetails.getPrice() * qty);
-										sum += sum + foodDetails.getPrice() * qty;
+										sum += foodDetails.getPrice() * qty;
 									}
 								}
 

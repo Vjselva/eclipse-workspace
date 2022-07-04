@@ -9,8 +9,9 @@ class ImportantFunc
 		
 		        // Creating date
 		        Date d1 = new Date(2000, 11, 21);
-		        Date d2 = new Date();  // Current date
+		        Date d2 = new Date(2022,01,10);  // Current date
 		        Date d3 = new Date(2010, 1, 3);
+		        System.out.println(d2);
 		  
 		        boolean a = d3.after(d1);
 		        System.out.println("Date d3 comes after date d2: " + a); //check after date or not
