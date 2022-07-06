@@ -11,7 +11,6 @@ class ImportantFunc
 		        Date d1 = new Date(2000, 11, 21);
 		        Date d2 = new Date(2022,01,10);  // Current date
 		        Date d3 = new Date(2010, 1, 3);
-		        System.out.println(d2);
 		  
 		        boolean a = d3.after(d1);
 		        System.out.println("Date d3 comes after date d2: " + a); //check after date or not
@@ -26,8 +25,8 @@ class ImportantFunc
 		        System.out.println("Miliseconds from Jan 1 "+
 		                "1970 to date d1 is " + d1.getTime());
 		  
-		        System.out.println("Before setting "+d2);
-		        d2.setTime(204587433443L);
+		       
+		        d2.setTime(-204587433443L);
 		        System.out.println("After setting "+d2);
 		    
 		

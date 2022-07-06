@@ -1,3 +1,4 @@
+package com.register.servlet;
 
 
 import java.io.IOException;
@@ -53,29 +54,31 @@ public class FormValidation extends HttpServlet {
 		String about=request.getParameter("about");
         System.out.println(name);
 		PrintWriter pw=response.getWriter();
-		try
-		{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/registration", "root", "root");
-			Statement stmt = con.createStatement();
-			String sql = "insert into info(name,email,password,phonenumber,gender,language,zipcode,about,created_by) values('"
-					+ name+ "','" + email + "','" + password + "','" + phonenumber + "','"
-					+ gender + "','" + language + "','" + zipcode + "','" + about + "','"+name+"')";
-			
-			int result = stmt.executeUpdate(sql);
-			if (result > 0) {
-				System.out.println("\n--Sucessfully Registered--");
-			} else {
-				System.out.println("\n--Registration not complete try again later--");
-			}
-
 		
-	
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+//		try
+//		{
+//			Class.forName("com.mysql.cj.jdbc.Driver");
+//			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/registration", "root", "root");
+//			Statement stmt = con.createStatement();
+//			String sql = "insert into info(name,email,password,phonenumber,gender,language,zipcode,about,created_by) values('"
+//					+ name+ "','" + email + "','" + password + "','" + phonenumber + "','"
+//					+ gender + "','" + language + "','" + zipcode + "','" + about + "','"+name+"')";
+//			
+//			int result = stmt.executeUpdate(sql);
+//			if (result > 0) {
+//				System.out.println("\n--Sucessfully Registered--");
+//			} else {
+//				System.out.println("\n--Registration not complete try again later--");
+//			}
+//
+//		
+//	
+//		}
+//		catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+		pw.println(name);
 		doGet(request, response);
 	}
 
