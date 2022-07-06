@@ -25,7 +25,7 @@ public class WaterPattern {
 					array[i][j]=s.charAt(i);
 					array[j][i]=s.charAt(i);
 				}
-			//System.out.print(array[i][j]);	
+			System.out.print(array[i][j]);	
 			}
 			System.out.println();
 		}

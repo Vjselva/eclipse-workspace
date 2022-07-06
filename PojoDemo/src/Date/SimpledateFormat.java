@@ -9,6 +9,20 @@ import java.util.TimeZone;
 
 class Dateformat
 {
+	void getDate()
+	{
+		Date d1 = new Date();
+        System.out.println("Current date is " + d1);
+        Date d2 = new Date(2323223232L);
+        System.out.println("Date represented is "+ d2 );
+//		Deprecated Functions
+//		Date(int year, int month, int date, int hrs, int min);
+//		Date(int year, int month, int date, int hrs, int min, int sec)
+//      Date(int year, int month, int date, int hrs, int min, int sec)
+//      Date(String s)
+//		
+		
+	}
 	void format()
 	{
 		  Date date = new Date();  
@@ -55,6 +69,8 @@ class Dateformat
         
 	}
 	
+	
+	
 }
 
 public class SimpledateFormat
@@ -62,6 +78,7 @@ public class SimpledateFormat
 	public static void main(String[] args) {
 		//System.out.println("hai");
 		Dateformat df=new Dateformat();
+		df.getDate();
 		df.format();
 		df.greenwich();
 		
