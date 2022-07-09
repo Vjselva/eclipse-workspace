@@ -2,6 +2,12 @@ package FoodOrder;
 
 import java.util.Scanner;
 
+public class MainPage {
+	public static void main(String args[]) {
+
+		MainContent.initialPage();
+	}
+}
 class MainContent {
 
 	public static void initialPage() {
@@ -27,11 +33,6 @@ class MainContent {
 		}
 	}
 
-	public class MainPage {
-		public static void main(String[] args) {
-
-			MainContent.initialPage();
-		}
-	}
+	
 
 }
