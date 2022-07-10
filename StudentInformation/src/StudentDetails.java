@@ -5,28 +5,38 @@ import java.util.Scanner;
 class DatabaseConnection {
 
 	Scanner sc = new Scanner(System.in);
+	Connection con = DBconnection.getInstance().getConnection();
 
 	public void view() throws ClassNotFoundException, SQLException {
 		System.out.println("\n\n\t\t--- CRUD OPERATION --- ");
 		System.out.println("1. Add student Information in DB");
 		System.out.println("2. View student Information ");
-		System.out.println("3. Delete student Information using ID ");
-		System.out.print("\n \tEnter your options ");
-		int choice = sc.nextInt();
-		sc.nextLine();
-		switch (choice) {
-		case 1:
-			getInput();
-			break;
-		case 2:
-			viewInformation();
-			break;
-		case 3:
-			delete();
-			break;
-		default:
-			System.out.println("Please enter valid choice");
-		}
+		System.out.println("3. Delete student Information  ");
+		System.out.println("4. Update student Information ");
+		int ch;
+		do {
+			System.out.print("\n \tEnter your options ");
+			int choice = sc.nextInt();
+			sc.nextLine();
+			switch (choice) {
+			case 1:
+				getInput();
+				break;
+			case 2:
+				viewInformation();
+				break;
+			case 3:
+				deleteInformation();
+				break;
+			case 4:
+				updateInformation();
+				break;
+			default:
+				System.out.println("Please enter valid choice");
+			}
+			System.out.print("\nIf you want to continue PRESS 0 ");
+			ch = sc.nextInt();
+		} while (ch == 0);
 	}
 
 	public void getInput() throws ClassNotFoundException, SQLException {
@@ -54,17 +64,16 @@ class DatabaseConnection {
 				std.add(student);
 				// System.out.println(std);
 			}
-			System.out.println("If you want to continue press 1. ");
+			System.out.println("\nIf you want to continue press 1. ");
 			ch1 = sc.nextInt();
 			sc.nextLine();
 
 		} while (ch1 == 1);
-		addInformation(std);
+
 	}
 
 	public void addInformation(ArrayList<Student> std) throws SQLException, ClassNotFoundException {
 		String userId = "Selva001";
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_details", "root", "root");
 		Statement stmt = con.createStatement();
 		for (Student obj : std) {
 
@@ -79,14 +88,12 @@ class DatabaseConnection {
 			}
 
 		}
-		view();
 
 	}
 
 	void viewInformation() {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_details", "root", "root");
+
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("Select * from information");
 			rs.toString();
@@ -106,21 +113,78 @@ class DatabaseConnection {
 		}
 	}
 
-	public void delete() throws ClassNotFoundException, SQLException {
+	public void deleteInformation() throws ClassNotFoundException, SQLException {
 		System.out.print("Enter Student id which you going to be delete ");
 		int id = sc.nextInt();
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/student_details", "root", "root");
-			Statement stmt = con.createStatement();
-			String sql = "delete from information where id=" + id;
-			stmt.executeUpdate(sql);
-			System.out.println("Record deleted successfully");
-		} catch (Exception e) {
+		if (checkIDExist(id)) {
+			try {
+				Statement stmt = con.createStatement();
+				String sql = "delete from information where id=" + id;
+				stmt.executeUpdate(sql);
+				System.out.println("\n$-- Record deleted successfully --$");
+			} catch (Exception e) {
 
-			e.printStackTrace();
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("$-- Student not Exist. Please Enter valid student ID --$");
 		}
-		view();
+
+	}
+
+	void updateInformation() throws SQLException {
+		Scanner sc = new Scanner(System.in);
+		Statement stmt = con.createStatement();
+		System.out.print("\nEnter Student ID  ");
+		int id = sc.nextInt();
+		if (checkIDExist(id))
+
+		{
+			int ch;
+			do {
+				String sql;
+				System.out.println("\n1.Name		2.Age		3.Mobile No");
+				int choice = sc.nextInt();
+				sc.nextLine();
+				switch (choice) {
+				case 1:
+					System.out.print("\nEnter Update Name ");
+					String name = sc.nextLine();
+					sql = "update information set stu_name=" + name + " where id=" + id;
+					stmt.executeUpdate(sql);
+					break;
+				case 2:
+					System.out.print("\nEnter Update Age ");
+					int age = sc.nextInt();
+					sql = "update information set age=" + age + " where id=" + id;
+					stmt.executeUpdate(sql);
+					break;
+				case 3:
+					System.out.print("\nEnter Update MobileNo ");
+					long mobileno = sc.nextLong();
+					sql = "update information set mobile=" + mobileno + " where id=" + id;
+					stmt.executeUpdate(sql);
+					break;
+				default:
+					System.out.println("\nPlease enter the valid choices only...");
+				}
+
+				System.out.print("\nIf you want to Update again press 0 ");
+				ch = sc.nextInt();
+
+			} while (ch == 0);
+		}
+
+	}
+
+	boolean checkIDExist(int id) throws SQLException {
+
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery("Select * from information where id=" + id);
+		if (rs != null) {
+			return true;
+		}
+		return false;
 
 	}
 }

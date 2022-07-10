@@ -8,10 +8,11 @@ import java.util.*;
 public class StackExample {
 
 	private Stack<SelectedOptions> backStack = new Stack<SelectedOptions>();
-	
+
 	public int language;
+
 	public static void main(String args[]) throws SQLException, ClassNotFoundException {
-		
+
 		StackExample stackExample = new StackExample();
 		stackExample.start();
 	}
@@ -32,10 +33,9 @@ public class StackExample {
 					break;
 				}
 			} else {
-				if(backStack.peek().level + 1==1)
-				{
-					language=choice;
-					System.out.println(language);
+				if (backStack.peek().level + 1 == 1) {
+					language = choice;
+					// System.out.println(language);
 				}
 				backStack.push(new SelectedOptions(backStack.peek().level + 1, choice));
 			}
@@ -48,56 +48,36 @@ public class StackExample {
 	}
 
 	private void print(int level, int choice) throws SQLException, ClassNotFoundException {
-		
+
 		for (String choiceString : getChoices(level, choice)) {
 			System.out.println(choiceString);
 		}
 	}
-	
 
 	ArrayList<String> getChoices(int level, int choice) throws SQLException, ClassNotFoundException {
+		
 		ArrayList<String> choiceList = new ArrayList();
-		Connection con=DatabaseConnection.getInstance().getConnection();
-	
+		Connection con = DatabaseConnection.getInstance().getConnection();
+		Statement stmt = con.createStatement();
 		if (level == 0) {
-			
-			Statement stmt = con.createStatement();
+
 			ResultSet rs = stmt.executeQuery("Select choice from level0");
-			rs.toString();
-			while(rs.next())
-			{
-				choiceList.add(rs.getString(1));
-			}
-			con.close();
-			
+			addToChoiceList(rs, choiceList);
+
 		} else if (level == 1) {
-			
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("Select choice from level1 where level_choiceid = "+choice);
-			rs.toString();
-			while(rs.next())
-			{
-				choiceList.add(rs.getString(1));
-			}
-			choiceList.add("9.Back");
-			choiceList.add("0.Exit");
-			con.close();
+
+			ResultSet rs = stmt.executeQuery("Select choice from level1 where level_choiceid = " + choice);
+			addToChoiceList(rs, choiceList);
 			
 		} else if (level == 2) {
-			System.out.println(language);
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("Select choice from level3 where level1_id='"+language+"'and level_choiceid ='"+choice);
-			rs.toString();
-			while(rs.next())
-			{
-				choiceList.add(rs.getString(1));
-			}
-			choiceList.add("9.Back");
-			choiceList.add("0.Exit");
-			con.close();
 			
+			ResultSet rs = stmt.executeQuery(
+					"Select choice from level3 where level1_id=" + language + " AND level_choiceid=" + choice);
+			addToChoiceList(rs, choiceList);
+
 		} else if (level == 3) {
-			System.out.println("Your Option set Sucessfully");
+			
+			System.out.println("Your choosed Option Sucessfully Updated");
 			System.out.println("9-Back");
 			System.out.println("0-Exit");
 		}
@@ -105,7 +85,19 @@ public class StackExample {
 		return choiceList;
 	}
 
+	void addToChoiceList(ResultSet rs, ArrayList<String> choiceList) throws SQLException {
+		
+		rs.toString();
+		while (rs.next()) {
+			choiceList.add(rs.getString(1));
+		}
+		choiceList.add("9.Back");
+		choiceList.add("0.Exit");
+
+	}
+
 	static class SelectedOptions {
+		
 		private int level;
 		private int choice;
 
