@@ -19,6 +19,11 @@ public class Userdetails {
 	public void setAge(int age) {
 		this.age = age;
 	}
+	@Override
+	public String toString() {
+		return "Userdetails [name=" + name + ", age=" + age + ", gender=" + gender + ", panno=" + panno + ", password="
+				+ password + ", balance=" + balance + "]";
+	}
 	public String getGender() {
 		return gender;
 	}

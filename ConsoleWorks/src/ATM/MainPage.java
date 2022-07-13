@@ -9,7 +9,7 @@ class Main {
 		while (end) {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("\n\t -- Z-ATM --");
-			System.out.print("\n1.Already a User	2.New User 	3.Exit ");
+			System.out.print("\n1.Login   2.New User 	3.Exit ");
 			String option = sc.next();
 			if (ValidationPage.checkNumber(option)) {
 				int choice = option.charAt(0) - '0';

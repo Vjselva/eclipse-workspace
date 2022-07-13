@@ -10,6 +10,7 @@ subclassses
 package Date;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 //import java.sql.Date;
@@ -28,6 +29,18 @@ class DateFunctions
 //      Date(int year, int month, int date, int hrs, int min, int sec)
 //      Date(String s)
 //		
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-YYYY");  
+        String strDate = dateFormat.format(new Date());  
+        System.out.println(strDate);
+	}
+	void list()
+	{
+		ArrayList<String> al=new ArrayList<String>();
+		ArrayList<String> al1=new ArrayList<String>();
+		al1.add("selva");
+		al.addAll(al1);
+		System.out.println(al);
+		
 		
 	}
 }
@@ -37,6 +50,7 @@ public class DateClass {
 	
 	public static void main(String[] args) {
 		new DateFunctions().getDate();
+		new DateFunctions().list();
 		
 	}
 
