@@ -16,37 +16,41 @@ public class UserPage {
 	static HashMap<Integer, HashMap<Integer, ArrayList<Object>>> orderMap = new HashMap<Integer, HashMap<Integer, ArrayList<Object>>>();
 
 	public void selection() {
-		System.out.println("\n  ------  User Login --------");
-		System.out.print("\n1.Already a User      2. New User ");
-		int choice = sc.nextInt();
-		switch (choice) {
-		case 1:
-			login();
-			break;
-		case 2:
-			createuserAccount();
-			break;
+		System.out.println("\n  ------  Trio Food Order --------");
+		System.out.print("\n1.Create Account      2. New User ");
+		String option = sc.next();
+		if (Validation.checkNumber(option)) {
+			int choice = option.charAt(0) - '0';
+			switch (choice) {
+			case 1:
+				login();
+				break;
+			case 2:
+				createuserAccount();
+				break;
+			}
 		}
 	}
 
 	private void login() {
 
 		System.out.print("\n\tUser ID : ");
-		int userID = sc.nextInt();
+		String userID = sc.next();
 		System.out.print("\tPassword : ");
 		String password = sc.next();
-		UserDetails top = userMap.get(userID);
-		if (top != null && password.equals(top.getPassword())) {
-			String name = top.getUserName();
-			userOption(userID, name);
-		}
-		else
-		{
-			String message=top==null?"~~~ Your Account is not Existing ~~~. Create a Account*":"~~~ Your Password is Wrong ~~~";
-			System.out.println(message);
-			
-		}
+		if (Validation.foodPriceCheck(userID)) {
 
+			UserDetails top = userMap.get(Integer.parseInt(userID));
+			if (top != null && password.equals(top.getPassword())) {
+				String name = top.getUserName();
+				userOption(Integer.parseInt(userID), name);
+			} else {
+				String message = top == null ? "~~~ Your Account is not Existing - Create a Account"
+						: "~~~ Your Password is Wrong ~~~";
+				System.out.println(message);
+
+			}
+		}
 	}
 
 	public void userOption(int userID) {
@@ -80,7 +84,7 @@ public class UserPage {
 	}
 
 	public void yourBill(int bill, String date) {
-		
+
 		System.out.println("\n\t\t---- TRIO Food Order Bill---");
 		System.out.println("\n\tBill No : " + bill + "\t \t \t Date : " + date);
 		if (orderMap.containsKey(bill)) {
@@ -90,8 +94,8 @@ public class UserPage {
 						long sum = 0;
 						System.out.println(
 								"\n---------------------------------------------------------------------------------");
-						System.out.printf("|%10s %10s %10s %10s %10s", "FOOD CODE  |", "FOOD NAME  |",
-								"FOOD PRICE|", "Quantity|", " FoodTotalPrice|");
+						System.out.printf("|%10s %10s %10s %10s %10s", "FOOD CODE  |", "FOOD NAME  |", "FOOD PRICE|",
+								"Quantity|", " FoodTotalPrice|");
 						System.out.println(
 								"\n---------------------------------------------------------------------------------");
 						ArrayList<Object> food = obj1.getValue();
@@ -123,7 +127,6 @@ public class UserPage {
 	}
 
 	public void foodList(int userID, String name) {
-		
 
 		System.out.println("\n\t\t ---NORTHINDIAN FOODS---");
 		System.out.println("\n-----------------------------------------------------------");
@@ -137,7 +140,7 @@ public class UserPage {
 			}
 
 		}
-		
+
 		System.out.println("\n\n\t\t --- SOUTHINDIAN FOODS ---");
 		System.out.println("\n-----------------------------------------------------------");
 		System.out.printf("|%5s %14s %10s %10s ", " FOOD CODE |", " FOOD NAME |", " FOOD PRICE |", " FOOD TYPE |");
@@ -149,45 +152,80 @@ public class UserPage {
 						foodDetails.getPrice(), foodDetails.getType());
 			}
 		}
-		userOption(userId,name);
-		
+		userOption(userId, name);
 
 	}
 
 	public void createuserAccount() {
 		UserDetails details = new UserDetails();
 		System.out.println("\n\t---- Create Your Account ----");
-		System.out.print("\nName ");
-		sc.nextLine();
-		details.setUserName(sc.nextLine());
-		System.out.print("Mobile ");
-		details.setMobileNumber(sc.nextLong());
+		boolean end = true;
+		while (end) { // for name
+			System.out.print("\nName ");
+			String name = sc.nextLine();
+			if (!Validation.checkName(name)) {
+				System.out.println("\nName must contain 3 to 30 characters only");
+			} else {
+				details.setUserName(name);
+				end = false;
+
+			}
+		}
+		end = true;
+		while (end) { // for mobile no
+			System.out.print("Mobile ");
+			String mobileno = sc.next();
+			if (!Validation.checkMobileno(mobileno)) {
+				System.out.println("10 Numbers Only allowed");
+			} else {
+				Long mobileNumber = Long.valueOf(mobileno);
+				details.setMobileNumber(mobileNumber);
+				end = false;
+			}
+
+		}
 		System.out.print("Location ");
 		sc.nextLine();
 		details.setLocation(sc.nextLine());
-		System.out.print("Password ");
-		details.setPassword(sc.next());
+		end = true;
+		while (end) { // for password
+
+			System.out.print("Password ");
+			String password = sc.next();
+			if (!Validation.checkPassword(password)) {
+				System.out.println(
+						"Password must contain 1 upper case 1 Lower case 1 Special Character and more than 5 characters");
+			} else {
+				details.setPassword(password);
+			}
+		}
 		userMap.put(++userId, details);
 		System.out.println("\n Account is created.Your Login ID is " + userId);
 
 	}
 
 	public void userOption(int userID, String name) {
-		System.out.println("\n\n Welcome " + name.toUpperCase()+" Your Options are..");
+		System.out.println("\n\n Welcome " + name.toUpperCase() + " Your Options are..");
 		System.out.println("\n\t 1.View Food Menu \n\t 2.Order Your Foods \n\t 3.Bill");
-		int choice = sc.nextInt();
-		switch (choice) {
-		case 1:
-			foodList(userID, name);
-			break;
-		case 2:
-			userOption(userID);
-			break;
-		case 3:
-			break;
-		default:
-			System.out.println("\t \t...Thank You..");
+		String option = sc.next();
+		if (Validation.checkNumber(option)) {
+			int choice = Integer.parseInt(option);
+			switch (choice) {
+			case 1:
+				foodList(userID, name);
+				break;
+			case 2:
+				userOption(userID);
+				break;
+			case 3:
+				break;
+			default:
+				System.out.println("\t \t...Thank You..");
+			}
+		} else {
+			System.out.println("Enters numbers Only..!!");
 		}
+
 	}
 
 //	public void userDetailsDisplay(HashMap<Integer, UserDetails> userMap) {

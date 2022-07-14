@@ -41,7 +41,7 @@ public class Mail {
 					end = false;
 				}
 			} else {
-				System.out.println("Age Must contain Numbers only !!");
+				System.out.println("\nAge Must contain Numbers only !!");
 			}
 		}
 		end = true;
@@ -49,7 +49,7 @@ public class Mail {
 			System.out.print("\nMobile No ");
 			Long mobileno = sc.nextLong();
 			if (!MailValidation.checkMobileNo(mobileno)) {
-				System.out.println("\nMobile Must contains 10 Numbers!!");
+				System.out.println("\nMobile Must contains 10 Numbers. start with 7-9!!");
 			} else {
 				detail.setMobileno(mobileno);
 				end = false;
@@ -59,7 +59,7 @@ public class Mail {
 		end = true;
 		String mail = "";
 		while (end) { // for zmail id
-			System.out.print("\n Email Name ");
+			System.out.print("\nEmail Name ");
 			mail = sc.next();
 			mail += "@zmail.com";
 			if (userdetail.containsKey(mail)) {
@@ -82,7 +82,7 @@ public class Mail {
 		}
 		userdetail.put(mail, detail);
 		
-		System.out.println("Mail Id created [ "+mail+" ]");
+		System.out.println("\nMail Id created [ "+mail+" ] ");
 		// display();
 
 	}
@@ -119,7 +119,7 @@ public class Mail {
 	private void UserOption(String mail) {
 		Scanner sc = new Scanner(System.in);
 
-		int ch;
+		char ch;
 		do {
 			System.out.println("\nWelcome " + userdetail.get(mail).getName());
 			System.out.println(" 1.Compose \n 2.Inbox \n 3.SendItems");
@@ -139,12 +139,12 @@ public class Mail {
 
 				}
 			} else {
-				System.out.println("Enter valid options - Numbers Only");
+				System.out.println("\nEnter valid options - Numbers Only");
 			}
 
-			System.out.println("If you want to continue Press 5");
-			ch = sc.nextInt();
-		} while (ch == 5);
+			System.out.println("\nIf you want to continue Press Y");
+			ch = sc.next().charAt(0);
+		} while (ch == 'Y' || ch=='y');
 
 	}
 
@@ -161,13 +161,14 @@ public class Mail {
 					System.out.println("To   " + inbox.getTo() + "\n----------------------------");
 					System.out.println("Subject " + inbox.getSubject());
 					System.out.println("Message " + inbox.getMessage());
-					System.out.println("\n\n #####################################");
+					System.out.println("#####################################");
+					System.out.println();
 
 				}
 			}
 		}
 		if (count == 0) {
-			System.out.println("\n\t\t--Empty-- ");
+			System.out.println("\n\t--Empty-- ");
 		}
 
 	}
@@ -191,7 +192,7 @@ public class Mail {
 			}
 		}
 		if (count == 0) {
-			System.out.println("\n\t\t--Empty-- ");
+			System.out.println("\n\t--Empty-- ");
 		}
 
 	}

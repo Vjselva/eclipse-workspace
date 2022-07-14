@@ -10,25 +10,48 @@ public class FoodPage implements FoodVariety {
 	static HashMap<Integer, FoodDetails> foodMap = new HashMap<Integer, FoodDetails>();
 
 	public void addNewFood() {
-		int choice;
+		String choice;
 		Scanner sc = new Scanner(System.in);
 		do {
 			foodId += 1;
+			boolean end = true;
 			FoodDetails food = new FoodDetails();
 			System.out.println("\n\t*** Add new Food ***\n");
 			System.out.print("Food Name ");
 			food.setName(sc.nextLine());
-			System.out.print("Food Price ");
-			food.setPrice(sc.nextInt());
-			System.out.print("Food Type : 1.North Indian    2. South Indian  ");
-			int type = sc.nextInt();
-			FoodType foodType = type == 1 ? FoodType.NORTHINDIAN : FoodType.SOUTHINDIAN;
-			food.setType(foodType);
+			while (end) {
+				System.out.print("Food Price ");
+				String price = sc.next();
+				if (!Validation.foodPriceCheck(price)) {
+					System.out.println("\nNumbers only allowed with 5 digit");
+				} else {
+					int price1 = Integer.parseInt(price);
+					food.setName(price);
+					end = false;
+				}
+
+			}
+			end = true;
+			while (end) {
+				System.out.print("Food Type : 1.North Indian    2. South Indian  ");
+				String type = sc.next();
+				if (!Validation.checkNumber(type)) {
+					System.out.println("Enter a Valid choice");
+				} else {
+					if (Integer.parseInt(type) == 1 || Integer.parseInt(type) == 2) {
+						FoodType foodType = Integer.parseInt(type) == 1 ? FoodType.NORTHINDIAN : FoodType.SOUTHINDIAN;
+						food.setType(foodType);
+						end = false;
+					} else {
+						System.out.println("\n Choice doesn't exist");
+					}
+				}
+			}
 			foodMap.put(foodId, food);
-			System.out.print("\n\t Press 5 to Contine... ");
-			choice = sc.nextInt();
+			System.out.print("\n\t Press Y to Contine... ");
+			choice = sc.next();
 			sc.nextLine();
-		} while (choice == 5);
+		} while (choice.equals('Y'));
 
 	}
 
@@ -38,9 +61,8 @@ public class FoodPage implements FoodVariety {
 		System.out.printf("|%10s %10s %10s %10s", "FOOD CODE  |", "FOOD NAME  |", "FOOD PRICE  |", "PRICE TYPE  |");
 		System.out.println("\n-----------------------------------------------------------");
 		for (Entry<Integer, FoodDetails> entry : foodMap.entrySet()) {
-			int key = entry.getKey();
 			FoodDetails foodDetails = entry.getValue();
-			System.out.printf("\n%5s %14s %10s %20s", key, foodDetails.getName(), foodDetails.getPrice(),
+			System.out.printf("\n%5s %14s %10s %20s", entry.getKey(), foodDetails.getName(), foodDetails.getPrice(),
 					foodDetails.getType());
 		}
 		System.out.println("\n--------------------------------------------------------------");
@@ -55,8 +77,16 @@ public class FoodPage implements FoodVariety {
 
 	@Override
 	public void deleteExistingFood() {
-		// TODO Auto-generated method stub
-
+		Scanner sc = new Scanner(System.in);
+		System.out.println("\n -- Remove from Food List --");
+		System.out.println(" Food Id ");
+		String sid = sc.next();
+		int id = Integer.parseInt(sid);
+		if (foodMap.containsKey(sid)) {
+			foodMap.remove(sid);
+		} else {
+			System.out.println("\nFood ID not Exist in Food List");
+		}
 	}
 
 }
@@ -83,7 +113,8 @@ class Admin extends FoodPage {
 
 		System.out.println("\n1. Add Food and Its Details ");
 		System.out.println("2. View Existing Food list ");
-		System.out.println("3. Exit");
+		System.out.println("3. Delete Items in Food List");
+		System.out.println("4. Exit");
 		System.out.println();
 		int choice = sc.nextInt();
 		FoodPage foodpage = new FoodPage();
@@ -97,6 +128,9 @@ class Admin extends FoodPage {
 			adminChoice();
 			break;
 		case 3:
+			foodpage.deleteExistingFood();
+			break;
+		case 4:
 			MainContent.initialPage();
 			break;
 		}
