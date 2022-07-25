@@ -6,9 +6,9 @@ class CheckAnagram {
 	void checkanagram() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the Firt String ");
-		String string1 = sc.next();
+		String string1 = sc.nextLine();
 		System.out.println("Enter the Second String ");
-		String string2 = sc.next();
+		String string2 = sc.nextLine();
 
 		if (string1.length() != string2.length()) {
 			System.out.println("Two strings are not anagram");

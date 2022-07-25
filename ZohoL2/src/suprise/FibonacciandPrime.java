@@ -1,15 +1,15 @@
 package suprise;
 
 class Prime {
-	static int count = 0;
 
 	void start() {
-		int number = 0, number1 = 1;
+		int number = 0, number1 = 1, count = 0;
 		boolean end = true;
 		while (end) {
 			int number3 = number + number1;
 			if (primecheck(number3)) {
 				System.out.println(number3);
+				count++;
 			}
 			if (count == 10) {
 				end = false;
@@ -20,16 +20,11 @@ class Prime {
 	}
 
 	private boolean primecheck(int number) {
-
 		boolean flag = true;
-
 		for (int i = 2; i < number / 2; i++) {
 			if (number % i == 0) {
 				flag = false;
 			}
-		}
-		if (flag) {
-			count++;
 		}
 		return flag;
 
